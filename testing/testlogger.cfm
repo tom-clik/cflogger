@@ -7,12 +7,12 @@ for (debug in [0,1]) {
 
 		logger = new logger.logger(debug=debug,db=db,dsn="clikpic");
 
-		logger.log("testing");
+		logger.log("testing error");
 
-		logger.log("warning","w","interesting");
+		logger.log("warning error","w","interesting");
 
 
-		logger.log("error","e");
+		logger.log("error error","e");
 
 		logger.viewLog();
 		logger.viewLog("interesting");
