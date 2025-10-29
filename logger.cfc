@@ -144,7 +144,7 @@ component logger {
 		
 	}
 
-	static private array function getDBLog(required string logrunID) output=false {
+	private array function getDBLog(required string logrunID) output=false {
 
 		local.sql = "
 			SELECT
@@ -158,7 +158,7 @@ component logger {
 	        ORDER BY logtime_exact
 	    ";
 		local.params = {
-			"request_id":{value=arguments.logrunID, cfsqltype="cf_sql_varchar"},
+			"request_id":{value=arguments.logrunID, sqltype="varchar"},
 		};
 		
 		return queryExecute( local.sql, local.params, { datasource=variables.dsn, returnType="array" } );
@@ -188,7 +188,7 @@ component logger {
 	 */
 	public array function getLog() {
 	
-		if ( !StructKeyExists(request,"logrunID") && !structKeyExists(arguments, "server") ) {
+		if ( !StructKeyExists(request,"logrunID") ) {
 			local.log = [];
 		} 
 		else {
